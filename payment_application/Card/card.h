@@ -1,6 +1,3 @@
-
-#define card.h
-
 typedef unsigned char uint8_t ;
 
 typedef struct ST_cardData_t
