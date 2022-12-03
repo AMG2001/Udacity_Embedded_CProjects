@@ -1,19 +1,15 @@
-#include<stdio.h>
-union card
-{
-        int name;
-};
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdbool.h>
 
-enum daysOfWeek{
-    SAT,
-    SUN,
-    MON ,
-	TUES
-};
+int main() {
+    // Write C code here
+    char c = 'a';
+    bool valid=true;
+    valid =  c = 65 ? true:false;
+    printf("%d",valid);
+    int x = 'a';
+    printf("%d",x);
 
-
-void main(){
-	enum daysOfWeek day1=SAT;
-	enum daysOfWeek day2=SUN;
-    printf("%d \n",day1);
+    return 0;
 }

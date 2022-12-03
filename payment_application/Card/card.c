@@ -1,10 +1,24 @@
 #include<stdio.h>
+#include<stdbool.h>
 #include "card.h"
 
 
-//1-CARD_OK
+/**
+ * ******************************************************************
+ * ******************************************************************
+ * ###################### CardHolderName Check ######################
+ * ******************************************************************
+ * ******************************************************************
+ */
+
+
+
+/**
+ * Test Cases of "CardHolderName" , "getCardExpiryDate" , ""
+ */
+ //1-CARD_OK
 ST_cardData_t test1={
-    "mohamad amgad elsayed","19 Septemper 2001","12/27"
+    "mohamad amgad elsayed","19 Septemper 2001","1227"
 };
 ST_cardData_t test2={
     "yara amgad","17 October 2001","12/27"
@@ -14,18 +28,21 @@ ST_cardData_t test3={
     "Nada Ahmad elsayed mo","17 October 2001","12/27"
 };
 ST_cardData_t test4={
-    "yara amgad elsayed ali daif","17 October 2001","12/27"
+    "yara amgad elsayed ali daif","17 October 2001","12//887"
 };
 //5-CARD_OK
 ST_cardData_t test5={
-    "nora mohamad ahmad esa","17 October 2001","12/27"
+    "nora mohamad ahmad esa","17 October 2001","//27"
 };
 //6-CARD_OK
 ST_cardData_t test6={
-    "ali ahmad amgad elsayed","17 October 2001","12/27"
+    "ali ahmad amgad elsayed","17 October 2001","1272/"
 };
 
 
+/**
+ * Check the length of CardHolderName 
+ */
 EN_cardError_t  getCardHolderName(ST_cardData_t *cardData){
 if(strlen(cardData->cardHolderName)<20||cardData->cardHolderName==NULL||strlen(cardData->cardHolderName)>24){
     return WRONG_NAME;
@@ -34,6 +51,10 @@ if(strlen(cardData->cardHolderName)<20||cardData->cardHolderName==NULL||strlen(c
 }
 }
 
+
+/**
+ * this Function is Used to get value of enum and print it with it's name .
+ */
 void printValueAsEnum(int d){
     switch (d)
     {
@@ -55,7 +76,9 @@ void printValueAsEnum(int d){
     }
 }
 
-
+/**
+ * Testing CardHolderName with number of tests.
+ */
 void getCardHolderNameTest(){
     printf("************************************ \n");
     printf("************************************ \n");
@@ -99,7 +122,115 @@ void getCardHolderNameTest(){
     printf("************************************ \n");
 };
 
+
+
+/**
+ * ******************************************************************
+ * ******************************************************************
+ * ######################## Card Number Check #######################
+ * ******************************************************************
+ * ******************************************************************
+ */
+
+
+/**
+ * Check validation of regex of card Number .
+ */
+
+int  validateCardNumber(ST_cardData_t *cardData){
+   if(cardData->cardExpirationDate[0]>=48&&cardData->cardExpirationDate[0]<=57
+   &&cardData->cardExpirationDate[1]>=48&&cardData->cardExpirationDate[1]<=57
+   &&cardData->cardExpirationDate[2]==47
+   &&cardData->cardExpirationDate[3]>=48&&cardData->cardExpirationDate[3]<=57
+   &&cardData->cardExpirationDate[4]>=48&&cardData->cardExpirationDate[4]<=57
+   ){
+    return 1;
+   }else{
+    return 0;
+   }
+}
+
+/**
+ * 
+ */
+
+EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData){
+    /**
+     * Check validation of Card Number XX/XX .
+     */
+    ;
+    if(validateCardNumber(cardData)==1){
+        /**
+         * Chech the length of the card Number .
+         */
+if(strlen(cardData->cardExpirationDate)>5||strlen(cardData->cardExpirationDate)<5){
+        return WRONG_EXP_DATE;
+    }else if(cardData->cardExpirationDate[2]!='/'){
+        return WRONG_EXP_DATE;
+    }else{
+        return CARD_OK;
+    } 
+     
+    }else{
+        return WRONG_EXP_DATE;
+    }
+
+     
+     
+}
+
+/**
+ * 
+ */
+
+void getCardExpiryDateTest(){
+     printf("************************************ \n");
+    printf("************************************ \n");
+    printf("Tester Name: mohamad amgad\n");
+    printf("Function Name: getCardExpiryDate\n");
+    printf("Test Case 1: \n");
+    printf("Input Data: %s\n",test1.cardExpirationDate);
+    printf("Expected Result: WRONG_EXP_DATE\n");
+    printValueAsEnum(getCardExpiryDate(&test1));
+    printf("************************************ \n");
+    printf("************************************ \n");
+    printf("Test Case 2: \n");
+    printf("Input Data: %s\n",test2.cardExpirationDate);
+    printf("Expected Result: CARD_OK\n");
+    printValueAsEnum(getCardExpiryDate(&test2));
+    printf("************************************ \n");
+    printf("************************************ \n");
+        printf("Test Case 3: \n");
+    printf("Input Data: %s\n",test3.cardExpirationDate);
+    printf("Expected Result: CARD_OK\n");
+    printValueAsEnum(getCardExpiryDate(&test3));
+    printf("************************************ \n");
+    printf("************************************ \n");
+        printf("Test Case 4: \n");
+    printf("Input Data: %s\n",test4.cardExpirationDate);
+    printf("Expected Result: WRONG_EXP_DATE\n");
+    printValueAsEnum(getCardExpiryDate(&test4));
+    printf("************************************ \n");
+    printf("************************************ \n");
+        printf("Test Case 5: \n");
+    printf("Input Data: %s\n",test5.cardExpirationDate);
+    printf("Expected Result: WRONG_EXP_DATE\n");
+    printValueAsEnum(getCardExpiryDate(&test5));
+    printf("************************************ \n");
+    printf("************************************ \n");
+        printf("Test Case 6: \n");
+    printf("Input Data: %s\n",test6.cardExpirationDate);
+    printf("Expected Result: WRONG_EXP_DATE\n");
+    printValueAsEnum(getCardExpiryDate(&test6));
+    printf("************************************ \n");
+    printf("************************************ \n");
+}
+
+
+
 int main(){
 getCardHolderNameTest();
+getCardExpiryDateTest();
+
 return 0;
 }
