@@ -1,8 +1,19 @@
-#include <stdio.h>
-
-int main()
+#include<stdio.h>
+union card
 {
-	printf("Hello World!\n");
+        int name;
+};
 
-	return (0);
+enum daysOfWeek{
+    SAT,
+    SUN,
+    MON ,
+	TUES
+};
+
+
+void main(){
+	enum daysOfWeek day1=SAT;
+	enum daysOfWeek day2=SUN;
+    printf("%d \n",day1);
 }
