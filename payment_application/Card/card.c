@@ -25,7 +25,7 @@ ST_cardData_t test2={
 };
 //3-CARD_OK
 ST_cardData_t test3={
-    "Nada Ahmad elsayed mo","17 October 2001","12/27"
+    "Nada Ahmad elsayed mo","17 October 2001","08/25"
 };
 ST_cardData_t test4={
     "yara amgad elsayed ali daif","17 October 2001","12//887"
@@ -59,19 +59,19 @@ void printValueAsEnum(int d){
     switch (d)
     {
     case 0:
-        printf("CARD_OK\n");
+        printf("Actual : CARD_OK\n");
         break;
      case 1:
-        printf("WRONG_NAME\n");
+        printf("Actual : WRONG_NAME\n");
         break;
          case 2:
-        printf("WRONG_EXP_DATE\n");
+        printf("Actual : WRONG_EXP_DATE\n");
         break;
          case 3:
-        printf("WRONG_PAN\n");
+        printf("Actual : WRONG_PAN\n");
         break;
     default:
-        printf("NON\n");
+        printf("Actual : NON\n");
         break;
     }
 }
@@ -227,10 +227,8 @@ void getCardExpiryDateTest(){
 }
 
 
-
 int main(){
 getCardHolderNameTest();
 getCardExpiryDateTest();
-
 return 0;
 }
