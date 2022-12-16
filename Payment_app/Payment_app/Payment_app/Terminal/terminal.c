@@ -5,6 +5,10 @@
 #include "terminal.h"
 
 
+
+ST_cardData_t test1_card = {
+    "mohamad amgad elsayed", "19 Septemper 2001", "12/27"};
+
  ST_terminalData_t test1={
          1500.0, 3000.0, "20/12/2022"
  };
@@ -84,7 +88,20 @@ void getCurrentDate(uint8_t *currentDate){
 }
 
 
+/**
+ * Compare transaction date and Expiration date .
+ */
+ EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *termData){
+   int expirationMonth,expirationYear,transactionMonth,transactionYear;
+//    uint8_t expirationDateInChar = (uint8_t) cardData->cardExpirationDate;
+//    uint8_t transactionDateInChar = (uint8_t) termData->transactionDate;
+//    printf("%s \n",expirationDateInChar);
+return TERMINAL_OK;
+ }
+
 int main()
 {
-    printValueAsEnum(getTransactionDate(&test1));
+    // printValueAsEnum(getTransactionDate(&test1));
+    isCardExpired( &test1_card,&test1);
+    printf("Thied line printed \n");
 }

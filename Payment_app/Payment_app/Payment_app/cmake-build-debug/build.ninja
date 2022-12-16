@@ -56,6 +56,20 @@ build CMakeFiles/Payment_app.dir/Card/card.c.obj: C_COMPILER__Payment_app_Debug 
   OBJECT_DIR = CMakeFiles\Payment_app.dir
   OBJECT_FILE_DIR = CMakeFiles\Payment_app.dir\Card
 
+build CMakeFiles/Payment_app.dir/Server/server.c.obj: C_COMPILER__Payment_app_Debug C$:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Server/server.c || cmake_object_order_depends_target_Payment_app
+  DEP_FILE = CMakeFiles\Payment_app.dir\Server\server.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Card -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Server -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Terminal
+  OBJECT_DIR = CMakeFiles\Payment_app.dir
+  OBJECT_FILE_DIR = CMakeFiles\Payment_app.dir\Server
+
+build CMakeFiles/Payment_app.dir/Terminal/terminal.c.obj: C_COMPILER__Payment_app_Debug C$:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Terminal/terminal.c || cmake_object_order_depends_target_Payment_app
+  DEP_FILE = CMakeFiles\Payment_app.dir\Terminal\terminal.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Card -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Server -IC:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Terminal
+  OBJECT_DIR = CMakeFiles\Payment_app.dir
+  OBJECT_FILE_DIR = CMakeFiles\Payment_app.dir\Terminal
+
 build CMakeFiles/Payment_app.dir/Payment_app.cpp.obj: CXX_COMPILER__Payment_app_Debug C$:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/Payment_app.cpp || cmake_object_order_depends_target_Payment_app
   DEP_FILE = CMakeFiles\Payment_app.dir\Payment_app.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
@@ -71,7 +85,7 @@ build CMakeFiles/Payment_app.dir/Payment_app.cpp.obj: CXX_COMPILER__Payment_app_
 #############################################
 # Link the executable Payment_app.exe
 
-build Payment_app.exe: CXX_EXECUTABLE_LINKER__Payment_app_Debug CMakeFiles/Payment_app.dir/Card/card.c.obj CMakeFiles/Payment_app.dir/Payment_app.cpp.obj
+build Payment_app.exe: CXX_EXECUTABLE_LINKER__Payment_app_Debug CMakeFiles/Payment_app.dir/Card/card.c.obj CMakeFiles/Payment_app.dir/Server/server.c.obj CMakeFiles/Payment_app.dir/Terminal/terminal.c.obj CMakeFiles/Payment_app.dir/Payment_app.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Payment_app.dir
