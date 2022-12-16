@@ -10,8 +10,8 @@ include_directories(Terminal)
 add_executable(Payment_app
         Card/card.c
         Card/card.h
-        Server/server.c
-        Server/server.h
-        Terminal/terminal.c
-        Terminal/terminal.h
+#        Server/server.c
+#        Server/server.h
+#        Terminal/terminal.c
+#        Terminal/terminal.h
         Payment_app.cpp)

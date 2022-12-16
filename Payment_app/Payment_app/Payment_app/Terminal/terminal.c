@@ -1,12 +1,13 @@
 #include <stdbool.h>
 #include<conio.h>
 #include<time.h>
-#include "stdio.h"
+#include <stdio.h>
 #include "terminal.h"
-#include "../Card/card.h"
 
 
-
+ ST_terminalData_t test1={
+         1500.0, 3000.0, "20/12/2022"
+ };
 
 void printValueAsEnum(int d)
 {
@@ -40,7 +41,6 @@ void printValueAsEnum(int d)
 }
 
 
-
 /**
  * this function is used to check on the regex of Transaction Date "XX/XX/XXXX" .
  */
@@ -69,7 +69,10 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t *termData){
     }else return WRONG_DATE ;
 };
 
-void getCurrentDate(uint8_t currentDate[11]){
+/***
+ * Get current date method in format "XX/XX/XXXX"
+ */
+void getCurrentDate(uint8_t *currentDate){
     
  time_t t;
     t = time(NULL);
@@ -83,13 +86,5 @@ void getCurrentDate(uint8_t currentDate[11]){
 
 int main()
 {
-uint8_t currentDate[11];
-    getCurrentDate(currentDate);
-
-    ST_terminalData_t test1={
-            1500.0, 3000.0, "20/11/2022"
-    };
-
-    // printf("current date is : %s \n",getCurrentDate());   
     printValueAsEnum(getTransactionDate(&test1));
 }

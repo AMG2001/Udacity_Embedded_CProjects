@@ -1,0 +1,3 @@
+C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/out/build/x64-Debug/CMakeFiles/Payment_app.dir
+C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/Payment_app/Payment_app/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
