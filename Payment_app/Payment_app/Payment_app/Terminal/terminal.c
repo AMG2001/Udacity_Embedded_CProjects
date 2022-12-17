@@ -1,18 +1,22 @@
-#include <stdbool.h>
 #include<conio.h>
 #include<time.h>
 #include <stdio.h>
 #include "terminal.h"
+//#include "../Card/card.h"
 
-
-
-ST_cardData_t test1_card = {
-    "mohamad amgad elsayed", "19 Septemper 2001", "12/27"};
+ ST_cardData_t test1_card = {
+     "mohamad amgad elsayed", "19 Septemper 2001", "12/27"};
 
  ST_terminalData_t test1={
          1500.0, 3000.0, "20/12/2022"
  };
 
+
+
+
+int charToInt(char x){
+    return (int)x%48;
+}
 void printValueAsEnum(int d)
 {
     switch (d)
@@ -93,15 +97,42 @@ void getCurrentDate(uint8_t *currentDate){
  */
  EN_terminalError_t isCardExpired(ST_cardData_t *cardData, ST_terminalData_t *termData){
    int expirationMonth,expirationYear,transactionMonth,transactionYear;
-//    uint8_t expirationDateInChar = (uint8_t) cardData->cardExpirationDate;
-//    uint8_t transactionDateInChar = (uint8_t) termData->transactionDate;
-//    printf("%s \n",expirationDateInChar);
-return TERMINAL_OK;
+   /**
+    * get expiration date "Month then year" from card Object .
+    */
+    expirationMonth= charToInt(cardData->cardExpirationDate[0])*10+charToInt(cardData->cardExpirationDate[1]);
+    expirationYear=2000+charToInt(cardData->cardExpirationDate[3])*10+charToInt(cardData->cardExpirationDate[4]);
+    /**
+     * get Transaction month and year and compare it with expration date : 
+     */
+    transactionMonth=charToInt(termData->transactionDate[3])*10+charToInt(termData->transactionDate[4]);
+    transactionYear=charToInt(termData->transactionDate[6])*1000+
+    charToInt(termData->transactionDate[7])*100+
+    charToInt(termData->transactionDate[8])*10+
+    charToInt(termData->transactionDate[9]);
+
+
+    printf("expiration month : %d \n",expirationMonth);
+printf("expiration year %d \n",expirationYear);
+printf("Transaction month = %d \n",transactionMonth);
+printf("Transaction year = %d \n",transactionYear);
+    /**
+     * First Check on the year , then check months :
+     */
+    if(transactionYear<=expirationYear){
+        if(transactionMonth<expirationMonth){
+            return TERMINAL_OK;
+        }else{
+            return EXPIRED_CARD;
+        }
+    }else{
+        return EXPIRED_CARD;
+    }
  }
 
 int main()
 {
-    // printValueAsEnum(getTransactionDate(&test1));
-    isCardExpired( &test1_card,&test1);
+    printValueAsEnum(getTransactionDate(&test1));
+    printValueAsEnum(isCardExpired( &test1_card,&test1));
     printf("Thied line printed \n");
 }

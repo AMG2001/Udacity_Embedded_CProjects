@@ -14,4 +14,4 @@ add_executable(Payment_app
        Server/server.h
        Terminal/terminal.c
        Terminal/terminal.h
-        Payment_app.cpp)
+        Payment_app.cpp main.c)

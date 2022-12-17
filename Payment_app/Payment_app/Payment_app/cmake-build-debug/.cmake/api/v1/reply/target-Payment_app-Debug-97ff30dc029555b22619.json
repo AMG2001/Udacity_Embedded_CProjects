@@ -80,7 +80,8 @@
 			[
 				0,
 				2,
-				4
+				4,
+				7
 			]
 		},
 		{
@@ -159,7 +160,8 @@
 				0,
 				2,
 				4,
-				6
+				6,
+				7
 			]
 		},
 		{
@@ -211,6 +213,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
 			"path" : "Payment_app.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.c",
 			"sourceGroupIndex" : 0
 		}
 	],
