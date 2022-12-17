@@ -1,0 +1,4 @@
+# ninja log v5
+2	63	6929176638446337	CMakeFiles/payment_app.dir/main.c.obj	ec26b77bf5f8131c
+7	71	6929176638526109	CMakeFiles/payment_app.dir/Terminal/terminal.c.obj	638c9b0cab79e5b1
+5	70	6929176400226965	CMakeFiles/payment_app.dir/Card/card.c.obj	1664462906e4cd73
