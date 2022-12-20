@@ -19,20 +19,8 @@
  */
 // 1-CARD_OK
 ST_cardData_t test1_card = {
-    "mohamad amgad elsayed", "19 Septemper 2001", "1227"};
-ST_cardData_t test2 = {
-    "yara amgad", "17 - October 2001", "12/27"};
-// 3-CARD_OK
-ST_cardData_t test3 = {
-    "Nada Ahmad elsayed mo", "October 2001", "08/25"};
-ST_cardData_t test4 = {
-    "yara amgad elsayed ali", "17 October ", "1287"};
-// 5-CARD_OK
-ST_cardData_t test5 = {
-    "nora mohamad ahmad esa", "17  2001", "//27"};
-// 6-CARD_OK
-ST_cardData_t test6 = {
-    "ali ahmad amgad elsayed", " October 2001", "1272/"};
+    "mohamad amgad elsayed", "12345aaC91234567", "1227"};
+
 
 /**
  * Check the length of CardHolderName
@@ -89,36 +77,7 @@ void getCardHolderNameTest()
     printValueAsEnum(getCardHolderName(&test1_card));
     printf("************************************ \n");
     printf("************************************ \n");
-    printf("Test Case 2: \n");
-    printf("Input Data: %s\n", test2.cardHolderName);
-    printf("Expected Result: WRONG_NAME\n");
-    printValueAsEnum(getCardHolderName(&test2));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 3: \n");
-    printf("Input Data: %s\n", test3.cardHolderName);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardHolderName(&test3));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 4: \n");
-    printf("Input Data: %s\n", test4.cardHolderName);
-    printf("Expected Result: WRONG_NAME\n");
-    printValueAsEnum(getCardHolderName(&test4));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 5: \n");
-    printf("Input Data: %s\n", test5.cardHolderName);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardHolderName(&test5));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 6: \n");
-    printf("Input Data: %s\n", test6.cardHolderName);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardHolderName(&test6));
-    printf("************************************ \n");
-    printf("************************************ \n\n\n");
+  
 };
 
 /**
@@ -130,7 +89,7 @@ void getCardHolderNameTest()
  */
 
 /**
- * Check validation of regex of card Number .
+ * Check validation of regex of card Number XX/XX .
  */
 
 int validateCardNumber(ST_cardData_t *cardData)
@@ -161,19 +120,15 @@ int validateCardNumber(ST_cardData_t *cardData)
 EN_cardError_t getCardExpiryDate(ST_cardData_t *cardData)
 {
     /**
-     * Check validation of Card Number XX/XX .
+     * Check validation of Card Number XX/XX  .
      */
     ;
     if (validateCardNumber(cardData) == 1)
     {
         /**
-         * Chech the length of the card Number .
+         * Chech the length of the card Number , must equal -> 5.
          */
-        if (strlen(cardData->cardExpirationDate) > 5 || strlen(cardData->cardExpirationDate) < 5)
-        {
-            return WRONG_EXP_DATE;
-        }
-        else if (cardData->cardExpirationDate[2] != '/')
+        if (strlen(cardData->cardExpirationDate) !=5 )
         {
             return WRONG_EXP_DATE;
         }
@@ -204,36 +159,7 @@ void getCardExpiryDateTest()
     printValueAsEnum(getCardExpiryDate(&test1_card));
     printf("************************************ \n");
     printf("************************************ \n");
-    printf("Test Case 2: \n");
-    printf("Input Data: %s\n", test2.cardExpirationDate);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardExpiryDate(&test2));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 3: \n");
-    printf("Input Data: %s\n", test3.cardExpirationDate);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardExpiryDate(&test3));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 4: \n");
-    printf("Input Data: %s\n", test4.cardExpirationDate);
-    printf("Expected Result: WRONG_EXP_DATE\n");
-    printValueAsEnum(getCardExpiryDate(&test4));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 5: \n");
-    printf("Input Data: %s\n", test5.cardExpirationDate);
-    printf("Expected Result: WRONG_EXP_DATE\n");
-    printValueAsEnum(getCardExpiryDate(&test5));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 6: \n");
-    printf("Input Data: %s\n", test6.cardExpirationDate);
-    printf("Expected Result: WRONG_EXP_DATE\n");
-    printValueAsEnum(getCardExpiryDate(&test6));
-    printf("************************************ \n");
-    printf("************************************ \n\n\n");
+    
 }
 
 /**
@@ -245,9 +171,28 @@ void getCardExpiryDateTest()
  */
 
 EN_cardError_t getCardPAN(ST_cardData_t *cardData)
-{
-    if (strlen(cardData->primaryAccountNumber) < 16 || strlen(cardData->primaryAccountNumber) > 19)
+{   
+    /***
+     * First check that the whole PAN is Numbers , there is no characters or symbols :
+     * then check on the length of the PAN .
+     */
+    bool flag=true;
+
+    for(int i =0;i<strlen(cardData->primaryAccountNumber);i++){
+        if( cardData->primaryAccountNumber[i]>=48 && cardData->primaryAccountNumber[i]<=57){
+            printf("value of it : %d \n",cardData->primaryAccountNumber[i]);
+            flag=true;
+        }
+        else{
+            printf("there is worng in pan loop \n");
+             flag=false;
+             break;
+        }
+    }
+    if (strlen(cardData->primaryAccountNumber) < 16 || strlen(cardData->primaryAccountNumber) > 19 )
     {
+        return WRONG_PAN;
+    }else if(flag==false){
         return WRONG_PAN;
     }
     else
@@ -268,42 +213,14 @@ void getCardPANTest()
     printValueAsEnum(getCardPAN(&test1_card));
     printf("************************************ \n");
     printf("************************************ \n");
-    printf("Test Case 2: \n");
-    printf("Input Data: %s\n", test2.primaryAccountNumber);
-    printf("Expected Result: CARD_OK\n");
-    printValueAsEnum(getCardPAN(&test2));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 3: \n");
-    printf("Input Data: %s\n", test3.primaryAccountNumber);
-    printf("Expected Result: WRONG_PAN\n");
-    printValueAsEnum(getCardPAN(&test3));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 4: \n");
-    printf("Input Data: %s\n", test4.primaryAccountNumber);
-    printf("Expected Result: WRONG_PAN\n");
-    printValueAsEnum(getCardPAN(&test4));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 5: \n");
-    printf("Input Data: %s\n", test5.primaryAccountNumber);
-    printf("Expected Result: WRONG_PAN\n");
-    printValueAsEnum(getCardPAN(&test5));
-    printf("************************************ \n");
-    printf("************************************ \n");
-    printf("Test Case 6: \n");
-    printf("Input Data: %s\n", test6.primaryAccountNumber);
-    printf("Expected Result: WRONG_PAN\n");
-    printValueAsEnum(getCardPAN(&test6));
-    printf("************************************ \n");
-    printf("************************************ \n\n\n");
+
 }
 
 int main()
 {
-    getCardHolderNameTest();
-    getCardExpiryDateTest();
-    getCardPANTest();
+    // getCardHolderNameTest();
+    // getCardExpiryDateTest();
+    // getCardPANTest();
+    
     return 0;
 }

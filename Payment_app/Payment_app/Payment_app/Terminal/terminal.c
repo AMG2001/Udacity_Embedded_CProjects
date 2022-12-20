@@ -1,11 +1,12 @@
 #include<conio.h>
 #include<time.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include "terminal.h"
 //#include "../Card/card.h"
 
  ST_cardData_t test1_card = {
-     "mohamad amgad elsayed", "19 Septemper 2001", "12/27"};
+     "mohamad amgad elsayed", "379354508162306", "12/27"};
 
  ST_terminalData_t test1={
          1500.0, 3000.0, "20/12/2022"
@@ -130,9 +131,61 @@ printf("Transaction year = %d \n",transactionYear);
     }
  }
 
+
+EN_terminalError_t getTransactionAmount(ST_terminalData_t *termData){
+    if(termData->transAmount<=0){
+        return INVALID_AMOUNT;
+    }else return TERMINAL_OK;
+}
+
+EN_terminalError_t isBelowMaxAmount(ST_terminalData_t *termData){
+    if(termData->transAmount<=termData->maxTransAmount){
+        return TERMINAL_OK;
+    }else return EXCEED_MAX_AMOUNT;
+}
+
+
+EN_terminalError_t setMaxAmount(ST_terminalData_t *termData, float maxAmount){
+   if(maxAmount<=0){
+    return INVALID_MAX_AMOUNT;
+   }else{
+     termData->maxTransAmount=maxAmount;
+     return TERMINAL_OK;
+   }
+}
+
+
+EN_terminalError_t isValidCardPAN(ST_cardData_t *cardData){
+    int numberOfDigits = strlen(cardData->primaryAccountNumber);
+    int sum=0;
+    bool isSecond=false;
+
+    for(int i = numberOfDigits-1;i>=0;i--){
+        int d =cardData->primaryAccountNumber[i]-'0';
+        if(isSecond==true){
+            d=d*2;
+        }
+        sum+=d/10;
+        sum+=d%10;
+        isSecond=!isSecond;
+    }
+    printf("sum : %d \n ",sum);
+    if(sum%10==0){
+        return TERMINAL_OK;
+    }else{
+        return INVALID_CARD;
+    }
+}
+
+
+
+
+
 int main()
 {
-    printValueAsEnum(getTransactionDate(&test1));
-    printValueAsEnum(isCardExpired( &test1_card,&test1));
-    printf("Thied line printed \n");
+    // printValueAsEnum(getTransactionDate(&test1));
+    // printValueAsEnum(isCardExpired( &test1_card,&test1));
+    // printf("Thied line printed \n");
+    printValueAsEnum(isValidCardPAN(&test1_card));
+    // isValidCardPAN();
 }
