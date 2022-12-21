@@ -1,3 +1,0 @@
-C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/cmake-build-debug/CMakeFiles/payment_app.dir
-C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/mavic/Desktop/Udacity_Embedded_CProjects/Payment_app/cmake-build-debug/CMakeFiles/rebuild_cache.dir
